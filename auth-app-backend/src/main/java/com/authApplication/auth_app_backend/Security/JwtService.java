@@ -4,6 +4,8 @@ import com.authApplication.auth_app_backend.entities.Role;
 import com.authApplication.auth_app_backend.entities.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Getter
+@Setter
 public class JwtService {
 
     private final SecretKey key;
@@ -101,5 +105,17 @@ public class JwtService {
     public String getJti(String token){
         return parse(token).getPayload().getId();
     }
+
+    public List<String> getRoles(String token){
+        Claims c = parse(token).getPayload();
+        return (List<String>) c.get("email");
+    }
+
+    public String getEmail(String token){
+        Claims c = parse(token).getPayload();
+        return (String) c.get("emial");
+    }
+
+
 
 }
