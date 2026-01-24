@@ -54,7 +54,6 @@ public class AuthController {
 
         }catch (Exception e){
             throw new BadCredentialsException("Invalid username or Password");
-
         }
     }
 

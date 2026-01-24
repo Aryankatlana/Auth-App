@@ -22,7 +22,7 @@ public class CustomUserDetailService implements UserDetailsService {
         //chatGpt
         return userRepository.findByEmail(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with email: " + username));
+                        new BadCredentialsException("User not found with email: " + username));
 
 //        return userRepository
 //                .findByEmail(username)
